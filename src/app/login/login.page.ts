@@ -47,7 +47,7 @@ export class LoginPage implements OnInit {
     try {
       await this.authService.login(email, password);
       console.log('Logged in successfully');
-      this.router.navigate(['/product-management']);
+      this.router.navigate(['/overview']);
     } catch (error) {
       await this.handleError(error);
     } finally {

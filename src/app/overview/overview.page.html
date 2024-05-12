@@ -1,0 +1,34 @@
+<!-- Overview page template -->
+<!-- Overview page template -->
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Overview</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="metric-container">
+    <div class="metric">
+      <p>Total Sales</p>
+      <h2>{{ totalSales | currency }}</h2>
+    </div>
+    <div class="metric">
+      <p>Visitors</p>
+      <h2>{{ visitors | number }}</h2>
+    </div>
+    <!-- Add other metrics here -->
+  </div>
+
+  <!-- Add your charts here -->
+  <!-- You can use chart libraries like Chart.js with Ionic -->
+  <!-- Example for a line chart -->
+  <canvas #revenueVsOrdersChart></canvas>
+
+  <!-- Example for a pie chart -->
+  <canvas #salesByCategoryChart></canvas>
+
+  <!-- Add buttons for Top Products, Top Categories, and Recent Users -->
+</ion-content>

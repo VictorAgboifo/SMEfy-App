@@ -59,7 +59,7 @@ export class RegisterPage implements OnInit {
         loading.dismiss();
         this.successMessage = 'Registration successful! Redirecting...';
         this.showToast(this.successMessage, 'success');
-        this.router.navigate(['/product-management']);
+        this.router.navigate(['/overview']);
       })
       .catch((error) => {
         loading.dismiss();
