@@ -26,7 +26,7 @@ export class LandingPage {
     setTimeout(async () => {
       await loading.dismiss();
     console.log('Navigating to /login'); // Debugging line
-    this.router.navigate(['/register']).then(success => {
+    this.router.navigate(['/login']).then(success => {
       console.log('Navigation successful:', success); // Debugging line
     }).catch(error => {
       console.error('Navigation error:', error); // Debugging line

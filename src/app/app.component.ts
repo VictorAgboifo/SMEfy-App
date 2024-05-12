@@ -9,7 +9,7 @@ export class AppComponent {
 
    // { title: 'Premium Feature [P]', url: '/premium-feature', icon: 'ribbon' },
     { title: 'Product Management', url: '/product-management', icon: 'fast-food' },
-    { title: 'Overview [P]', url: '/overview', icon: 'bar-chart' },
+    { title: 'Overview [P]', url: '/overview', icon: 'search-circle' },
    /* { title: 'Reviews', url: '/reviews', icon: 'chatbox-ellipses' },
     { title: 'Marketing', url: '/marketing', icon: 'megaphone' },
     { title: 'Promotions', url: '/promotions', icon: 'rocket' },

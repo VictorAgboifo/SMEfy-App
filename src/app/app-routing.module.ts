@@ -24,10 +24,10 @@ const routes: Routes = [
   },
   
   
-  {
+  /*{
     path: 'premium-feature',
     loadChildren: () => import('./premium-feature/premium-feature.module').then( m => m.PremiumFeaturePageModule)
-  },
+  },*/
 
   
   {
@@ -54,6 +54,7 @@ const routes: Routes = [
     path: 'overview',
     loadChildren: () => import('./overview/overview.module').then( m => m.OverviewPageModule)
   },
+ 
 
  
 ];
