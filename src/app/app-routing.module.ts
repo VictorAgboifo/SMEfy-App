@@ -24,10 +24,10 @@ const routes: Routes = [
   },
   
   
-  {
+  /*{
     path: 'premium-feature',
     loadChildren: () => import('./premium-feature/premium-feature.module').then( m => m.PremiumFeaturePageModule)
-  },
+  },*/
 
   
   {
