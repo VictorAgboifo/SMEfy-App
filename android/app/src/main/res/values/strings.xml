@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">SMEfy</string>
+    <string name="title_activity_main">SMEfy</string>
+    <string name="package_name">com.victoragboifo.smefy</string>
+    <string name="custom_url_scheme">com.victoragboifo.smefy</string>
+</resources>

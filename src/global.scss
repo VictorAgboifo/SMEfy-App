@@ -35,3 +35,78 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import "@ionic/angular/css/palettes/dark.system.css";
+
+
+
+ion-menu::part(backdrop) {
+  background-color: rgba(255, 0, 255, 0.5);
+}
+
+ion-menu::part(container) {
+  border-radius: 0 20px 20px 0;
+
+  box-shadow: 4px 0px 16px rgba(255, 0, 255, 0.18);
+}
+
+
+
+
+//ion-menu {
+ // --ion-background-color: #f4f5f8; /* Set the background color */
+  //--ion-text-color: #333; /* Set the text color */
+//}
+
+ion-content {
+  --ion-background-color: #f4f5f8; /* Set the background color */
+}
+
+ion-toolbar {
+  --background: linear-gradient(to left, #565088, #565088);
+ // ion-background-color: #006400; /* Set the toolbar background color */
+  --color: #fff; /* Set the toolbar text color */
+}
+
+
+
+
+ion-button {
+  --background: linear-gradient(to left, #565088, #565088);
+  //--background: #006400; /* Set the button background color */
+  --color: #fff; /* Set the button text color */
+  margin-bottom: 10px; /* Add some margin between buttons */
+}
+
+ion-item {
+  --ion-background-color: transparent; /* Set the item background color */
+  --ion-color-base: #333; /* Set the item text color */
+}
+
+ion-icon {
+  --color: #333; /* Set the icon color */
+}
+
+.ion-padding {
+  padding: 20px; /* Add padding to the content */
+}
+
+.ion-page {
+  height: 100%;
+}
+
+#main-content {
+  height: 100%;
+}
+
+
+
+
+//tab
+/*.example-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}*/
+
+
+

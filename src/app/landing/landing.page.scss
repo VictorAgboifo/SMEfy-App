@@ -1,0 +1,25 @@
+.container {
+  ion-img {
+    max-width: 50%;
+    max-height: 50%;
+    margin: auto; /* Center the image horizontally */
+    display: block; /* Ensure the image is treated as a block element */
+  }
+}
+
+
+.welcome{
+  text-align: center;
+}
+
+.welcome-message {
+  text-align: center;
+  max-width: 80%; // Adjust this value to control the width of the text
+}
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //height: 100vh; // This ensures the container takes up the full height of the viewport
+}

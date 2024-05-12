@@ -1,0 +1,46 @@
+
+.register{
+  text-align: center;
+  
+}
+
+
+
+.page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  //height: 100vh; // This ensures the container takes up the full height of the viewport
+}
+
+.fill-details {
+  margin-top: 10px; // Adjust as needed
+  text-align: center;
+}
+
+
+
+//
+ion-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; // Ensure the content takes up the full height of the viewport
+}
+
+.container {
+  margin-top: 5px; // Adjust as needed
+  text-align: center;
+  
+}
+
+
+
+.center-button {
+  margin-top: 20px; // Adjust as needed
+}
+
+
+
+

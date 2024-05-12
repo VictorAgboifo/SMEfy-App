@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Cart</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" >
+  <ion-list>
+    <ion-item *ngFor="let item of cartItems">
+      <ion-label>{{ item.product.name }}</ion-label>
+      <ion-note slot="end">{{ item.quantity }}</ion-note>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" (click)="placeOrder()">Place Order</ion-button>
+</ion-content>

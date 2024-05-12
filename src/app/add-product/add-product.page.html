@@ -1,0 +1,58 @@
+<!-- add-product.page.html -->
+
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Add Product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input
+      [(ngModel)]="productName"
+      type="text"
+      label="Name"
+      placeholder="Enter product name"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-textarea
+      [(ngModel)]="productDescription"
+      type="text"
+      label="Description"
+      placeholder="Enter product description"
+    ></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      [(ngModel)]="productPrice"
+      type="number"
+      label="Price"
+      placeholder="₦"
+    ></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input
+      [(ngModel)]="productQuantity"
+      type="number"
+      label="Quantity"
+      placeholder="000"
+    ></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-label>Image</ion-label>
+    <input
+      type="file"
+      (change)="onFileChanged($event)"
+      />
+  </ion-item>
+
+  <ion-button expand="block" (click)="addProduct()">Add Product</ion-button>
+</ion-content>

@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "smefy-app": {
+      "hosting": {
+        "app": [
+          "smefy-app"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "smefy-app"
+  }
+}

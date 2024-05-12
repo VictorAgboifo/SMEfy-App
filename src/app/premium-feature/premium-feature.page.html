@@ -1,0 +1,33 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Premium Feature</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div *ngIf="isPremiumUser; else upgradePrompt">
+    <!-- Content for premium users -->
+    <p>Welcome to the premium features!</p>
+    <!-- ... more premium content ... -->
+  </div>
+  
+  <ng-template #upgradePrompt>
+    <!-- Prompt for non-premium users -->
+    <p>You need to upgrade to access these features.</p>
+    <button (click)="upgradeToPremium()">Upgrade Now</button>
+  </ng-template>
+  
+  <!-- In your premium-feature.component.html -->
+  
+ <!-- <button (click)="performPremiumAction()">Access Premium Feature</button>-->
+  
+</ion-content>
+
+
+
+
+
+<

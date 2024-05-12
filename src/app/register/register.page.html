@@ -1,0 +1,59 @@
+<ion-content class="ion-padding">
+  <div class="register" ><h2>Register to begin!</h2></div>
+  <p class="page-container" >Fill in your details</p>
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Register</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-item>
+      <ion-label position="floating">Full Name</ion-label>
+      <ion-input formControlName="fullname" type="text"></ion-input>
+    </ion-item>
+    <div *ngIf="submitted && f['fullname'].errors?.['required']">
+      Full name is required.
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Email</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <div *ngIf="submitted && f['email'].errors?.['required']">
+      Email is required.
+    </div>
+    <div *ngIf="submitted && f['email'].errors?.['email']">
+      Please enter a valid email.
+    </div>
+
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input formControlName="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
+      <ion-icon slot="end" name="eye" (click)="togglePasswordVisibility()"></ion-icon>
+    </ion-item>
+    <div *ngIf="submitted && f['password'].errors?.['required']">
+      Password is required.
+    </div>
+    <div *ngIf="submitted && f['password'].errors?.['minlength']">
+      Password must be at least 8 characters long.
+    </div>
+
+    <ion-item>
+      <ion-label>Remember Me</ion-label>
+      <ion-checkbox formControlName="rememberMe"></ion-checkbox>
+    </ion-item>
+
+    <ion-button type="submit" expand="block">Register</ion-button>
+  </form>
+
+  <div class="signin">
+    <p>Forgot password? <a routerLink="/reset-password">Reset it here</a></p>
+  </div>
+
+  <div class="login">
+    <p>Already have an account? <a routerLink="/login">Login</a></p>
+  </div>
+
+</ion-content>

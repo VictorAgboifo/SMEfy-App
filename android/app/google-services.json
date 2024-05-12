@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "438159637421",
+    "project_id": "smefy-app",
+    "storage_bucket": "smefy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:438159637421:android:3d34f9ccc7c31ba2ed3f24",
+        "android_client_info": {
+          "package_name": "com.victoragboifo.smefy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "438159637421-176fjq6uhsh6nh8aigcnn9plsmsuq2ku.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.victoragboifo.smefy",
+            "certificate_hash": "d981cd0add860002b8fe74f23f4f66b5ace91a81"
+          }
+        },
+        {
+          "client_id": "438159637421-hoi4406b67dvru9jvml36hj3m076h8df.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4I5eC3zO11Ub33l8HC2hbKmJTNBNbTtQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "438159637421-hoi4406b67dvru9jvml36hj3m076h8df.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

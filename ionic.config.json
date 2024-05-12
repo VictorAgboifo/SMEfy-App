@@ -1,5 +1,7 @@
 {
   "name": "SMEfy",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
