@@ -22,12 +22,12 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./register/register.module').then(m => m.RegisterPageModule)
   },
-
-
-  {
+  
+  
+  /*{
     path: 'premium-feature',
-    loadChildren: () => import('./premium-feature/premium-feature.module').then(m => m.PremiumFeaturePageModule)
-  },
+    loadChildren: () => import('./premium-feature/premium-feature.module').then( m => m.PremiumFeaturePageModule)
+  },*/
 
 
   {
