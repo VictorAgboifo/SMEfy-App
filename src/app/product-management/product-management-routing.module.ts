@@ -28,11 +28,12 @@ const routes: Routes = [
       }
     ]
   },
-  /*{
+  {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/product-management/add-product',
     pathMatch: 'full',
-  }*/
+  }
+  
 ];
 
 

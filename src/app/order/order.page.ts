@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { OrderService } from '../services/order.service';
 
 @Component({
@@ -6,12 +6,10 @@ import { OrderService } from '../services/order.service';
   templateUrl: './order.page.html',
   styleUrls: ['./order.page.scss'],
 })
-export class OrderPage implements OnInit {
+export class OrderPage  {
   orders: any[] = [];
 
   constructor(private orderService: OrderService) {}
 
-  ngOnInit() {
-    // Load orders
-  }
+  
 }

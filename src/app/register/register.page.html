@@ -1,59 +1,59 @@
-<ion-content class="ion-padding">
-  <div class="register" ><h2>Register to begin!</h2></div>
-  <p class="page-container" >Fill in your details</p>
+<ion-content scrollY="false">
+  <ion-card>
+    <ion-card-content>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Register</ion-title>
-    </ion-toolbar>
-  </ion-header>
+      <div class="welcome">
+        <h1>To get started,</h1>
+        <h3>Create an account!</h3>
+      
+      <!--<h2>Register to begin</h2>-->
+      </div>
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <ion-item>
-      <ion-label position="floating">Full Name</ion-label>
-      <ion-input formControlName="fullname" type="text"></ion-input>
-    </ion-item>
-    <div *ngIf="submitted && f['fullname'].errors?.['required']">
-      Full name is required.
-    </div>
+      <form (ngSubmit)="createAccount()" [formGroup]="credentials">
+     
+        <ion-item>
+          <ion-label position="stacked">Your Email</ion-label>
+          <ion-input type="email" inputmode="email" placeholder="Email" formControlName="email"></ion-input>
+          <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Please insert a valid email</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Password</ion-label>
+          <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors?.['required']">Please insert a password</ion-note>
+          <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors?.['minlength']">Minlength 6 characters</ion-note>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked" class="role-label">Role</ion-label>
+          <ion-select formControlName="role">
+            <ion-select-option value="USER">User</ion-select-option>
+            <ion-select-option value="ADMIN">Admin</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-button type="submit" expand="block" strong="true" [disabled]="!credentials.valid">Create my account</ion-button>
 
-    <ion-item>
-      <ion-label position="floating">Email</ion-label>
-      <ion-input formControlName="email" type="email"></ion-input>
-    </ion-item>
-    <div *ngIf="submitted && f['email'].errors?.['required']">
-      Email is required.
-    </div>
-    <div *ngIf="submitted && f['email'].errors?.['email']">
-      Please enter a valid email.
-    </div>
+        <div class="ion-margin-top">
+          <ion-button
+            type="button"
+            expand="block"
+            color="primary"
+            fill="outline"
+            routerLink="/login"
+          >
+            <ion-icon name="person-outline" slot="start"></ion-icon>
+            Already have account
+          </ion-button>
+        </div>
 
-    <ion-item>
-      <ion-label position="floating">Password</ion-label>
-      <ion-input formControlName="password" [type]="showPassword ? 'text' : 'password'"></ion-input>
-      <ion-icon slot="end" name="eye" (click)="togglePasswordVisibility()"></ion-icon>
-    </ion-item>
-    <div *ngIf="submitted && f['password'].errors?.['required']">
-      Password is required.
-    </div>
-    <div *ngIf="submitted && f['password'].errors?.['minlength']">
-      Password must be at least 8 characters long.
-    </div>
+        <div class="container">
+          <ion-img src="assets/imgs/SMEfy-Landing.png"></ion-img>
+        </div>
 
-    <ion-item>
-      <ion-label>Remember Me</ion-label>
-      <ion-checkbox formControlName="rememberMe"></ion-checkbox>
-    </ion-item>
-
-    <ion-button type="submit" expand="block">Register</ion-button>
-  </form>
-
-  <div class="signin">
-    <p>Forgot password? <a routerLink="/reset-password">Reset it here</a></p>
-  </div>
-
-  <div class="login">
-    <p>Already have an account? <a routerLink="/login">Login</a></p>
-  </div>
-
+      </form>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+
+
+
+
+

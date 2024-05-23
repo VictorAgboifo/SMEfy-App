@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -19,22 +20,31 @@ import { getFirestore, provideFirestore } from '@angular/fire/firestore';
 import { getFunctions, provideFunctions } from '@angular/fire/functions';
 import { getMessaging, provideMessaging } from '@angular/fire/messaging';
 import { getStorage, provideStorage } from '@angular/fire/storage';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { VerticalBarChartComponent } from './components/vertical-bar-chart/vertical-bar-chart.component';
+
 
 
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, VerticalBarChartComponent],
   imports: [
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebaseConfig), 
-    
+    BrowserAnimationsModule,
+    NgxChartsModule,
+    IonicModule,
+    CommonModule,
+   // VerticalBarChartComponent,
     // Feature modules
     AuthModule,
     ProductModule,
     CartModule,
     OrderModule,
+    NgxChartsModule,
     provideFirebaseApp(() => initializeApp(environment.firebaseConfig)),
     provideAuth(() => getAuth()),
     provideAnalytics(() => getAnalytics()),
@@ -43,10 +53,15 @@ import { getStorage, provideStorage } from '@angular/fire/storage';
     provideMessaging(() => getMessaging()),
     provideStorage(() => getStorage())
   ],
+  exports: [VerticalBarChartComponent],
   providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy, }, ScreenTrackingService, UserTrackingService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+
+
+
 
 
 

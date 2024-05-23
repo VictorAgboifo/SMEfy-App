@@ -1,111 +1,68 @@
-// register.page.ts
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+import { Validators, FormBuilder } from '@angular/forms';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import {LoadingController,  ToastController } from '@ionic/angular';
-import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
-  registerForm: FormGroup;
-  submitted = false;
-  successMessage: string = '';
-  showPassword: boolean;
-  //loadingController: any;
-
-  
+export class RegisterPage {
+  credentials = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    role: ['USER', Validators.required],
+  });
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
     private loadingController: LoadingController,
-    private toastController: ToastController,
-    private authService: AuthService
-    
-  ) { }
+    private alertController: AlertController,
+    private router: Router
+  ) {}
 
-  ngOnInit() {
-    this.initForm();
+  get email() {
+    return this.credentials.get('email');
   }
 
-  initForm() {
-    this.registerForm = this.formBuilder.group({
-      fullname: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
-      rememberMe: [false]
-    });
+  get password() {
+    return this.credentials.get('password');
   }
 
-  get f() {
-    return this.registerForm.controls;
-  }
+  async createAccount() {
+    const loading = await this.loadingController.create();
+    await loading.present();
 
-  async onSubmit() {
-    const loading = await this.showLoading('In progress ...');
-    this.submitted = true;
-    if (this.registerForm.invalid) {
-      loading.dismiss();
-      return;
-    }
-    const email = this.registerForm.value.email;
-    const password = this.registerForm.value.password;
-    this.authService.register(email, password)
-      .then(() => {
-        loading.dismiss();
-        this.successMessage = 'Registration successful! Redirecting...';
-        this.showToast(this.successMessage, 'success');
-        this.router.navigate(['/overview']);
+    const credentials = this.credentials.value as { email: string; password: string; role: string };
+    this.authService.signUp(credentials)
+      .then(async (response) => {
+        await loading.dismiss();
+
+        if (response.error) {
+          this.showAlert('Registration failed', response.error.message);
+        } else {
+          const user = response.data.user;
+          await this.authService.addUserDetails(user.uid, credentials.email, credentials.role);
+          this.showAlert('Signup success', 'Please login with credentials to continue!');
+          this.router.navigateByUrl('/login', { replaceUrl: true });
+        }
       })
-      .catch((error) => {
-        loading.dismiss();
-        this.handleError(error);
+      .catch(async (error) => {
+        await loading.dismiss();
+        this.showAlert('Error', 'An unexpected error occurred. Please try again later.');
+        console.error('Signup error:', error);
       });
   }
-  
 
-  handleError(error: any) {
-    let message = 'Registration failed. Please try again later.';
-    if (error.code === 'auth/email-already-in-use') {
-      message = 'The email address is already in use by another account.';
-    }
-    this.presentToast(message);
-  }
-  presentToast(message: string) {
-    this.showToast(message, 'danger');
-  }
-  
-
-  private async showToast(message: string, color: string): Promise<void> {
-    const toast = await this.toastController.create({
-      message,
-      duration: 3000,
-      color
+  async showAlert(title: string, msg: string) {
+    const alert = await this.alertController.create({
+      header: title,
+      message: msg,
+      buttons: ['OK'],
     });
-    await toast.present();
-  }
-
-  private async showLoading(message: string): Promise<HTMLIonLoadingElement> {
-    const loading = await this.loadingController.create({ message });
-    await loading.present();
-    return loading;
-  }
-
-  togglePasswordVisibility() {
-    this.showPassword = !this.showPassword;
+    await alert.present();
   }
 }
-
-
-
-
-
-
-
-
-
-

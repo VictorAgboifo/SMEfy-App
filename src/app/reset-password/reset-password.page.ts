@@ -1,79 +1,56 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
-import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-reset-password',
   templateUrl: './reset-password.page.html',
   styleUrls: ['./reset-password.page.scss'],
 })
-export class ResetPasswordPage implements OnInit {
-  resetForm: FormGroup;
-  resetError: string | null = null;
+export class ResetPasswordPage {
+
+  credentials = this.fb.group({
+    email: ['', [Validators.required, Validators.email]],
+  });
 
   constructor(
-    private formBuilder: FormBuilder,
-    private router: Router,
+    private fb: FormBuilder,
     private authService: AuthService,
+    private loadingController: LoadingController,
     private alertController: AlertController
   ) {}
 
-  ngOnInit(): void {
-    this.resetForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]]
-    });
+  get email() {
+    return this.credentials.get('email');
   }
 
   async resetPassword() {
-    if (this.resetForm.invalid) {
-      return;
-    }
+    const loading = await this.loadingController.create();
+    await loading.present();
 
-    const email = this.resetForm.value.email;
+    const email = this.credentials.value.email;
+    this.authService.sendPwReset(email).then(async (response) => {
+      await loading.dismiss();
 
-    try {
-      await this.authService.resetPassword(email);
-      this.showAlert('Check Your Email', 'If an account exists for the email provided, we have sent a link to reset your password.');
-    } catch (error) {
-      this.showErrorAlert('An error occurred while attempting to reset the password. Please try again later.');
-    }
-  }
-
-  private async showAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header: header,
-      message: message,
-      buttons: [{
-        text: 'OK',
-        handler: () => {
-          this.router.navigateByUrl('/login');
-        }
-      }],
+      if (response.error) {
+        this.showAlert('Reset failed', response.error.message);
+      } else {
+        this.showAlert('Success', 'Password reset link sent. Check your email.');
+      }
+    }).catch(async (error) => {
+      await loading.dismiss();
+      this.showAlert('Error', 'An unexpected error occurred. Please try again later.');
+      console.error('Reset password error:', error);
     });
-    await alert.present();
   }
 
-  private async showErrorAlert(message: string) {
-    this.resetError = message;
+  async showAlert(title: string, msg: string) {
     const alert = await this.alertController.create({
-      header: 'Error',
-      message: message,
-      buttons: [{
-        text: 'OK',
-        handler: () => {
-          this.router.navigateByUrl('/login');
-        }
-      }],
+      header: title,
+      message: msg,
+      buttons: ['OK'],
     });
     await alert.present();
   }
 }
-
-
-
-
-
-
-
